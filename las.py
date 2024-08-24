@@ -1,15 +1,15 @@
 from src.utils.config import parse_arguments
 from src.utils.ezr import *
-from src.models import load_model
+from src.language import load_model
 from dotenv import load_dotenv
 from src.prompts import load_prompt
-from src.utils.results import save_results_txt
-from graph import visualize 
-from src.models.llms import unload_model
+#from graph import visualize 
+from src.language.llms import unload_model
 import warnings
 import time
 
 pool = [
+    'preference',
     'Premortem Analysis',
     'Structured Self-Critique',
     'Starbusting',
@@ -99,7 +99,12 @@ def vanilla(args):
                 done = _ranked(done, top, count)
             return done
 
-        i_sampled = random.choices(pool)
-        return _smo1(i_sampled[args.label:], _ranked(i_sampled[:args.label]))
+        i_sampled = DATA([[p] for p in pool])
+        print(i_sampled)
+       # return _smo1(i_sampled[args.label:], _ranked(i_sampled[:args.label]))
 
 
+if __name__ == "__main__":
+    args = parse_arguments
+    i_sampled = DATA([[p] for p in pool])
+    print(i_sampled)
