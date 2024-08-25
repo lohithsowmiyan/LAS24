@@ -82,7 +82,10 @@ def vanilla(args, save_results = False, model = None):
             model.model.config.pad_token_id = model.model.config.eos_token_id
             outputs = model(prompt, max_new_tokens=256,  do_sample=True, temperature=0.5, top_p=0.9) #eos_token_id=terminators,
             btw(outputs[0]['generated_text']) #if args.intermediate else None
-            return outputs[0]['generated_text'][len(prompt):]
+            for opt in todo:
+                if opt[0] in outputs[0]['generated_text'][len(prompt) :]: 
+                    return opt
+
             
         
         def _smo1(todo:rows, done:rows) -> rows:
