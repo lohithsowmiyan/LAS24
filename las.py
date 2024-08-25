@@ -101,10 +101,10 @@ def vanilla(args):
 
         i_sampled = DATA([[p] for p in pool])
         print(i_sampled)
-       # return _smo1(i_sampled[args.label:], _ranked(i_sampled[:args.label]))
+        return _smo1(i_sampled[args.label:])
 
 
 if __name__ == "__main__":
     args = parse_arguments
     i_sampled = DATA([[p] for p in pool])
-    print(i_sampled)
+    print(i_sampled.rows)
